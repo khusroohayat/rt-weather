@@ -7,7 +7,14 @@ class App extends Component {
         return (
             <div class='container'>
                 <div>
-                    <h1>Main Header</h1>
+                    <div className='navbar'>
+                        <h1>Weather App</h1>
+                        <ZipCode
+                        direction='row'
+                        onSubmitZipcode={function(){}}
+                        onUpdateZipcode={function(){}}
+                        zipcode={123}/>
+                    </div>
                 </div>
                 <div className='home-container' style={{backgroundImage: "url('app/images/pattern.svg')"}}>
                     <h1 className='header'>Enter a city and State</h1>
