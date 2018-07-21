@@ -12,7 +12,6 @@ class App extends Component {
                         <ZipCode
                         direction='row'
                         onSubmitZipcode={function(){}}
-                        onUpdateZipcode={function(){}}
                         zipcode={123}/>
                     </div>
                 </div>
@@ -21,7 +20,6 @@ class App extends Component {
                     <ZipCode 
                         direction='column'
                         onSubmitZipcode={function(){}}
-                        onUpdateZipcode={function(){}}
                         zipcode={123}
                     />
 
