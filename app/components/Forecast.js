@@ -4,17 +4,18 @@ import queryString from 'query-string';
 import utils from '../utils/helpers';
 const getDate = utils.getDate
 const convertTemp = utils.convertTemp
+import DayItem from './DayItem';
 
-function DayItem (props) {
-    var date = getDate(props.day.dt)
-    var icon = props.day.weather[0].icon
-    return (
-        <div onClick={props.onClick} className='dayContainer'>
-            <img className='weather' src={'../../app/images/weather-icons/' + icon + '.svg'} alt='weather' />
-            <h2 className='subheader'>{date}</h2>
-        </div>
-    )
-}
+// function DayItem (props) {
+//     var date = getDate(props.day.dt)
+//     var icon = props.day.weather[0].icon
+//     return (
+//         <div onClick={props.onClick} className='dayContainer'>
+//             <img className='weather' src={'../../app/images/weather-icons/' + icon + '.svg'} alt='weather' />
+//             <h2 className='subheader'>{date}</h2>
+//         </div>
+//     )
+// }
 
 class Forecast extends Component {
     constructor(props) {
@@ -58,6 +59,7 @@ class Forecast extends Component {
             });
     }
     handleClick(city) {
+        city.city = this.city;
         this.props.history.push({
             pathname: '/details/' + this.city,
             state: city,

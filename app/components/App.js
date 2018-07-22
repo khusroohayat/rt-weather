@@ -21,7 +21,7 @@ class App extends Component {
                     direction="row"
                     onSubmitZipcode={function(city) {
                         props.history.push({
-                          pathname: "forecast",
+                          pathname: "/forecast",
                           search: "?city=" + city
                         });
                       }}
@@ -46,7 +46,7 @@ class App extends Component {
                     direction="column"
                     onSubmitZipcode={function(city) {
                       props.history.push({
-                        pathname: "forecast",
+                        pathname: "/forecast",
                         search: "?city=" + city
                       });
                     }}
