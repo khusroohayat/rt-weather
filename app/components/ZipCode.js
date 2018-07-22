@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 import api from '../utils/api';
+import { ReactRouter } from 'react-router-dom';
 
 class ZipCode extends Component {
     constructor(props) {
@@ -11,15 +12,24 @@ class ZipCode extends Component {
 
         this.handleSubmitZipCode = this.handleSubmitZipCode.bind(this)
         this.handleUpdateZipCode = this.handleUpdateZipCode.bind(this)
+        //this.props.onSubmitZipCode(this.state.zipcode).
     }
     handleSubmitZipCode () {
-        api.getCurrentWeather(this.state.zipcode)
-            .then((res) => {
-               console.log(res);
+        // api.getCurrentWeather(this.state.zipcode)
+        //     .then((res) => {
+        //        console.log(res);
                 
-            }).catch((err) => {
-                console.log(err);
-            });
+        //     }).catch((err) => {
+        //         console.log(err);
+        //     });
+
+        this.props.onSubmitZipcode(this.state.zipcode);
+
+        this.setState(function () {
+            return {
+                zipcode: '',
+            }
+        })
     }
     handleUpdateZipCode (e) {
         var zip = e.target.value;
@@ -30,6 +40,8 @@ class ZipCode extends Component {
         })
     }
     render() { 
+        //console.log('PROPS', this.props);
+        
         return (
             <div
                className='zipcode-container' 
