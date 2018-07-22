@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import ZipCode from "./ZipCode";
 import Forecast from "./Forecast";
-import { BrowserRouter, Route } from "react-router-dom";
+//import ReactRouter from 'react-router-dom';
+var ReactRouter = require('react-router-dom');
+var BrowserRouter = ReactRouter.BrowserRouter;
+var Route = ReactRouter.Route;
+
 
 class App extends Component {
   render() {
@@ -53,7 +57,7 @@ class App extends Component {
             }}
           />
 
-          <Route path="/forecast" Component={Forecast} />
+          <Route path="/forecast" component={Forecast} />
         </div>
       </BrowserRouter>
     );
