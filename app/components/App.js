@@ -20,11 +20,11 @@ class App extends Component {
                   <ZipCode
                     direction="row"
                     onSubmitZipcode={function(city) {
-                      props.history.push({
-                        pathname: "forecast",
-                        search: "?city=" + city
-                      });
-                    }}
+                        props.history.push({
+                          pathname: "forecast",
+                          search: "?city=" + city
+                        });
+                      }}
                     zipcode={123}
                   />
                 </div>

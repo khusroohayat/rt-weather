@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
 import api from '../utils/api';
 import queryString from 'query-string';
+import utils from '../utils/helpers';
+const getDate = utils.getDate
+const convertTemp = utils.convertTemp
+
+function DayItem (props) {
+    var date = getDate(props.day.dt)
+    var icon = props.day.weather[0].icon
+    return (
+        <div>
+            <img className='weather' src={'../../app/images/weather-icons/' + icon + '.svg'} alt='weather' />
+            <h2 className='subheader'>{date}</h2>
+        </div>
+    )
+}
 
 class Forecast extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            forecastDate : [],
-            loading: false,
+            forecastData : [],
+            loading: true,
         }
 
         this.makeRequest = this.makeRequest.bind(this)
     }
 
     componentDidMount (){
-        const city = queryString.parse(this.props.location.search).city
-        this.makeRequest(city)
+        this.city = queryString.parse(this.props.location.search).city
+        this.makeRequest(this.city)
     }
 
     componentWillReceiveProps(nextProps) {
-        const city = queryString.parse(nextProps.location.search).city
+        this.city = queryString.parse(nextProps.location.search).city
         this.makeRequest(city)
     }
 
@@ -30,10 +44,13 @@ class Forecast extends Component {
             }
         })
 
-        api.getCurrentWeather(city)
+        api.getForecast(city)
             .then((res) => {
               console.log(res);
-              this.setState({ loading: false });
+              this.setState({ 
+                  loading: false,
+                  forecastData: res,
+                 });
                 
             }).catch((err) => {
                 
@@ -41,8 +58,15 @@ class Forecast extends Component {
     }
     render() { 
         return this.state.loading === true
-            ? <div>Loading</div>
-            : <div>Forecast Componenet</div>
+            ? <h1 className='forecast-header'> Loading </h1>
+            : <div>
+                <h1 className='forecast-header'>{this.city}</h1>
+                <div className='forecast-container'>
+                    {this.state.forecastData.list.map(function (listItem) {
+                        return <DayItem key={listItem.dt} day={listItem} />
+                    })}
+                </div>
+            </div>
     }
 }
  
